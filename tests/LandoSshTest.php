@@ -2,11 +2,12 @@
 
 use League\Container\ContainerAwareInterface;
 use League\Container\ContainerAwareTrait;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\NullOutput;
 use Robo\TaskAccessor;
 use Robo\Robo;
 
-class LandoSshTest extends \PHPUnit_Framework_TestCase implements ContainerAwareInterface
+class LandoSshTest extends TestCase implements ContainerAwareInterface
 {
   use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
@@ -17,7 +18,7 @@ class LandoSshTest extends \PHPUnit_Framework_TestCase implements ContainerAware
   /**
    * Set up the Robo container so that we can create tasks in our tests.
    */
-  function setup()
+  function setup(): void
   {
     $container = Robo::createDefaultContainer(null, new NullOutput());
     $this->setContainer($container);
