@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
 class RoboFile extends \Robo\Tasks
 {
   use \TheReference\Robo\Task\Lando\loadTasks;
@@ -7,9 +9,8 @@ class RoboFile extends \Robo\Tasks
     $this->stopOnFail(true);
     $this->taskPHPUnit()
       ->option('disallow-test-output')
-      ->option('report-useless-tests')
       ->option('strict-coverage')
-      ->option('-v')
+      ->option('log-events-verbose-text', 'phpunit-output.txt')
       ->option('-d error_reporting=-1')
       ->bootstrap('vendor/autoload.php')
       ->arg('tests')

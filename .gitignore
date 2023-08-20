@@ -1,6 +1,12 @@
 /vendor/
 composer.lock
 
+# Tests results
+/.phpunit.result.cache
+/phpunit-output.txt
+
 # Ignore IDE
 .vscode
 .idea
+
+
