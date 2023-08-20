@@ -1,16 +1,11 @@
 <?php
 
-use League\Container\ContainerAwareInterface;
-use League\Container\ContainerAwareTrait;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Output\NullOutput;
 use Robo\TaskAccessor;
-use Robo\Robo;
 
-class LandoStopTest extends TestCase implements ContainerAwareInterface
+class LandoStopTest extends TestCase
 {
   use TaskAccessor;
-  use ContainerAwareTrait;
 
   protected $executable;
 
@@ -19,19 +14,8 @@ class LandoStopTest extends TestCase implements ContainerAwareInterface
    */
   function setup(): void
   {
-    $container = Robo::createDefaultContainer(null, new NullOutput());
-    $this->setContainer($container);
     $executable_finder = new \Symfony\Component\Process\ExecutableFinder();
     $this->executable = $executable_finder->find("lando");
-  }
-
-  /**
-   * Scaffold the collection builder
-   */
-  public function collectionBuilder()
-  {
-    $emptyRobofile = new \Robo\Tasks;
-    return $this->getContainer()->get('collectionBuilder', [$emptyRobofile]);
   }
 
   public function testYesNotByDefault()
