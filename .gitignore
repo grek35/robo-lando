@@ -1,2 +1,6 @@
 /vendor/
 composer.lock
+
+# Ignore IDE
+.vscode
+.idea
