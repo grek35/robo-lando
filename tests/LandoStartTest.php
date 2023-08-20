@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoStartTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,13 +36,13 @@ class LandoStartTest extends TestCase implements ContainerAwareInterface
 
   public function testYesNotByDefault()
   {
-    $command = $this->taskLandoStart()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoStart())->getCommand();
     $this->assertEquals($this->executable . ' start', $command);
   }
 
   public function testFromOutsideAppDir()
   {
-    $command = $this->taskLandoStart()->application("myapp")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoStart())->application("myapp")->getCommand();
     $this->assertEquals($this->executable . " start myapp", $command);
   }
 

@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoDestroyTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,20 +36,19 @@ class LandoDestroyTest extends TestCase implements ContainerAwareInterface
 
   public function testYesIsAssumed()
   {
-    $command = $this->taskLandoDestroy()
-      ->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoDestroy())->getCommand();
     $this->assertEquals($this->executable . ' destroy --yes', $command);
   }
 
   public function testAbsenceOfYes()
   {
-    $command = $this->taskLandoDestroy()->yes(false)->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoDestroy())->yes(false)->getCommand();
     $this->assertEquals($this->executable . ' destroy', $command);
   }
 
   public function testApplication()
   {
-    $command = $this->taskLandoDestroy()->application('loremipsum')->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoDestroy())->application('loremipsum')->getCommand();
     $this->assertEquals($this->executable . ' destroy loremipsum --yes', $command);
   }
 

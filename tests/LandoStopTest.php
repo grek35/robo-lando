@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoStopTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,13 +36,13 @@ class LandoStopTest extends TestCase implements ContainerAwareInterface
 
   public function testYesNotByDefault()
   {
-    $command = $this->taskLandoStop()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoStop())->getCommand();
     $this->assertEquals($this->executable . ' stop', $command);
   }
 
   public function testFromOutsideAppDir()
   {
-    $command = $this->taskLandoStop()->application("myapp")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoStop())->application("myapp")->getCommand();
     $this->assertEquals($this->executable . " stop myapp", $command);
   }
 

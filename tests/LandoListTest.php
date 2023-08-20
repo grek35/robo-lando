@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoListTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,14 +36,13 @@ class LandoListTest extends TestCase implements ContainerAwareInterface
 
   public function testNoYesByDefault()
   {
-    $command = $this->taskLandoList()
-      ->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoList())->getCommand();
     $this->assertEquals($this->executable . ' list', $command);
   }
 
   public function testYesWhenForcing()
   {
-    $command = $this->taskLandoList()->yes(true)->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoList())->yes(true)->getCommand();
     $this->assertEquals($this->executable . ' list --yes', $command);
   }
 

@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoPoweroffTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,13 +36,13 @@ class LandoPoweroffTest extends TestCase implements ContainerAwareInterface
 
   public function testNoYesByDefault()
   {
-    $command = $this->taskLandoPoweroff()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoPoweroff())->getCommand();
     $this->assertEquals($this->executable . ' poweroff', $command);
   }
 
   public function testYesWhenForcing()
   {
-    $command = $this->taskLandoPoweroff()->yes(true)->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoPoweroff())->yes(true)->getCommand();
     $this->assertEquals($this->executable . ' poweroff --yes', $command);
   }
 

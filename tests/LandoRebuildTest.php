@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoRebuildTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,25 +36,25 @@ class LandoRebuildTest extends TestCase implements ContainerAwareInterface
 
   public function testYesByDefault()
   {
-    $command = $this->taskLandoRebuild()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoRebuild())->getCommand();
     $this->assertEquals($this->executable . ' rebuild --yes', $command);
   }
 
   public function testNoYesWhenForcing()
   {
-    $command = $this->taskLandoRebuild()->yes(false)->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoRebuild())->yes(false)->getCommand();
     $this->assertEquals($this->executable . ' rebuild', $command);
   }
 
   public function testFromAnAppDir()
   {
-    $command = $this->taskLandoRebuild()->application("my-app")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoRebuild())->application("my-app")->getCommand();
     $this->assertEquals($this->executable . ' rebuild my-app --yes', $command);
   }
 
   public function testMultipleServices()
   {
-    $command = $this->taskLandoRebuild()->services(array("cache", "appserver"))->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoRebuild())->services(array("cache", "appserver"))->getCommand();
     $this->assertEquals($this->executable . ' rebuild --services cache --services appserver --yes', $command);
   }
 

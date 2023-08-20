@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoLogsTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,25 +36,25 @@ class LandoLogsTest extends TestCase implements ContainerAwareInterface
 
   public function testYesIsNotAnOption()
   {
-    $command = $this->taskLandoLogs()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoLogs())->getCommand();
     $this->assertEquals($this->executable . ' logs', $command);
   }
 
   public function testApp()
   {
-    $command = $this->taskLandoLogs()->application("my-app")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoLogs())->application("my-app")->getCommand();
     $this->assertEquals($this->executable . ' logs my-app', $command);
   }
 
   public function testTimeStampAndFollow()
   {
-    $command = $this->taskLandoLogs()->timestamps()->follow()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoLogs())->timestamps()->follow()->getCommand();
     $this->assertEquals($this->executable . ' logs --timestamps --follow', $command);
   }
 
   public function testShowMultipleServices()
   {
-    $command = $this->taskLandoLogs()->services(array("database", "cache"))->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoLogs())->services(array("database", "cache"))->getCommand();
     $this->assertEquals($this->executable . ' logs --services database --services cache', $command);
   }
 

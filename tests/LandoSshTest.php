@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoSshTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,25 +36,25 @@ class LandoSshTest extends TestCase implements ContainerAwareInterface
 
   public function testYesNotByDefault()
   {
-    $command = $this->taskLandoSsh()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoSsh())->getCommand();
     $this->assertEquals($this->executable . ' ssh', $command);
   }
 
   public function testFromAppdirToService()
   {
-    $command = $this->taskLandoSsh()->service("appserver")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoSsh())->service("appserver")->getCommand();
     $this->assertEquals($this->executable . " ssh appserver", $command);
   }
 
   public function testFromAppAndService()
   {
-    $command = $this->taskLandoSsh()->application("myapp")->service("database")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoSsh())->application("myapp")->service("database")->getCommand();
     $this->assertEquals($this->executable . " ssh myapp database", $command);
   }
 
   public function testListAllFilesInRootOfAppserver()
   {
-    $command = $this->taskLandoSsh()->service("appserver")->command("ls -ls /")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoSsh())->service("appserver")->command("ls -ls /")->getCommand();
     $this->assertEquals($this->executable . " ssh appserver --command 'ls -ls /'", $command);
   }
 

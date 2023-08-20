@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoShareTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,13 +36,13 @@ class LandoShareTest extends TestCase implements ContainerAwareInterface
 
   public function testYesNotByDefault()
   {
-    $command = $this->taskLandoShare()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoShare())->getCommand();
     $this->assertEquals($this->executable . ' share', $command);
   }
 
   public function testFromAnAppDir()
   {
-    $command = $this->taskLandoShare()->url("http://localhost:32785")->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoShare())->url("http://localhost:32785")->getCommand();
     $this->assertEquals($this->executable . " share --url 'http://localhost:32785'", $command);
   }
 

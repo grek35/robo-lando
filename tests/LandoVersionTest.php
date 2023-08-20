@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoVersionTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,7 +36,7 @@ class LandoVersionTest extends TestCase implements ContainerAwareInterface
 
   public function testYesNotByDefault()
   {
-    $command = $this->taskLandoVersion()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoVersion())->getCommand();
     $this->assertEquals($this->executable . ' version', $command);
   }
 

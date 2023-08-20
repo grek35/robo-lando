@@ -9,7 +9,6 @@ use Robo\Robo;
 
 class LandoInfoTest extends TestCase implements ContainerAwareInterface
 {
-  use \TheReference\Robo\Task\Lando\loadTasks;
   use TaskAccessor;
   use ContainerAwareTrait;
 
@@ -37,20 +36,19 @@ class LandoInfoTest extends TestCase implements ContainerAwareInterface
 
   public function testYesIsNotDefault()
   {
-    $command = $this->taskLandoInfo()
-      ->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoInfo())->getCommand();
     $this->assertEquals($this->executable . ' info', $command);
   }
 
   public function testForceYes()
   {
-    $command = $this->taskLandoInfo()->yes(true)->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoInfo())->yes(true)->getCommand();
     $this->assertEquals($this->executable . ' info --yes', $command);
   }
 
   public function testDeep()
   {
-    $command = $this->taskLandoInfo()->deep()->getCommand();
+    $command = (new \TheReference\Robo\Task\Lando\LandoInfo())->deep()->getCommand();
     $this->assertEquals($this->executable . ' info --deep', $command);
   }
 

@@ -10,6 +10,7 @@ class RoboFile extends \Robo\Tasks
     $this->taskPHPUnit()
       ->option('disallow-test-output')
       ->option('strict-coverage')
+      ->option('log-events-verbose-text', 'phpunit-output.txt')
       ->option('-d error_reporting=-1')
       ->bootstrap('vendor/autoload.php')
       ->arg('tests')
