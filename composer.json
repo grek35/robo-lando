@@ -1,5 +1,5 @@
 {
-  "name": "thereference/robo-lando",
+  "name": "grek35/robo-lando",
   "description": "Lando extension for Robo Task Runner",
   "type": "robo-tasks",
   "license": "MIT",
@@ -7,6 +7,10 @@
     {
       "name": "Levi Govaerts",
       "email": "lgovaerts@reference.be"
+    },
+    {
+      "name": "Grégory Courtois",
+      "email": "me@grek.website"
     }
   ],
   "scripts": {
@@ -18,10 +22,10 @@
     }
   },
   "require": {
-    "php": ">=5.5.0",
-    "consolidation/Robo": "~1"
+    "php": ">=8.0",
+    "consolidation/robo": "~4"
   },
   "require-dev": {
-    "phpunit/phpunit": "~4.4"
+    "phpunit/phpunit": "~10.3"
   }
 }
